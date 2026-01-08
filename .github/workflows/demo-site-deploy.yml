@@ -1,0 +1,109 @@
+name: Demo Site Deployment
+
+on:
+  push:
+    branches:
+      - 'release/**'
+      - 'master'
+  workflow_dispatch:
+    inputs:
+      trigger_reason:
+        description: 'Reason for manual deployment'
+        required: false
+        type: string
+        default: 'Manual deployment'
+
+# Prevent concurrent deployments
+concurrency:
+  group: site-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    name: Deploy to Azure Blob Storage
+    runs-on: ubuntu-latest
+    if: github.event.before != '0000000000000000000000000000000000000000'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read site configuration
+        id: config
+        run: |
+          CONFIG_FILE=".dcs/site.yaml"
+          
+          if [ ! -f "$CONFIG_FILE" ]; then
+            echo "::error::Missing DCS site configuration file: $CONFIG_FILE"
+            exit 1
+          fi
+          
+          SITE_SLUG=$(grep -E '^site_slug:' "$CONFIG_FILE" | sed 's/site_slug:\s*//' | tr -d '"' | tr -d "'")
+          STORAGE_ACCOUNT=$(grep -E '^storage_account:' "$CONFIG_FILE" | sed 's/storage_account:\s*//' | tr -d '"' | tr -d "'")
+          OUTPUT_LOCATION=$(grep -E '^output_location:' "$CONFIG_FILE" | sed 's/output_location:\s*//' | tr -d '"' | tr -d "'")
+          
+          OUTPUT_LOCATION="${OUTPUT_LOCATION:-dist}"
+          
+          echo "site_slug=$SITE_SLUG" >> $GITHUB_OUTPUT
+          echo "storage_account=$STORAGE_ACCOUNT" >> $GITHUB_OUTPUT
+          echo "output_location=$OUTPUT_LOCATION" >> $GITHUB_OUTPUT
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create environment file
+        run: |
+          cat > .env << 'EOF'
+          VITE_BACKEND_URI="https://portal.duffcloudservices.com"
+          VITE_SITE_SLUG="${{ steps.config.outputs.site_slug }}"
+          EOF
+
+      - name: Build site
+        run: pnpm run build
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy to Azure Blob Storage
+        run: |
+          az storage blob upload-batch \
+            --account-name "${{ steps.config.outputs.storage_account }}" \
+            --destination '$web' \
+            --source "${{ steps.config.outputs.output_location }}" \
+            --auth-mode login \
+            --overwrite
+
+      - name: Log deployment result
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Deployment Successful"
+          else
+            echo "❌ Deployment Failed"
+          fi
+          echo "Site: ${{ steps.config.outputs.site_slug }}"
+          echo "Storage: ${{ steps.config.outputs.storage_account }}"

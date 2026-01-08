@@ -1,0 +1,10 @@
+# DCS Site Configuration
+# This file configures the integration between this site and DCS Portal
+
+site_slug: demo-3
+site_name: Astro Demo Site
+storage_account: stdemositethree
+output_location: dist
+
+# Site hosting (static blob storage for demo sites)
+production_url: https://stdemositethree.z22.web.core.windows.net/
