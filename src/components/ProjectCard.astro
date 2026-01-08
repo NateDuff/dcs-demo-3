@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string
+  category: string
+  description: string
+  image: string
+  color: string
+}
+
+const { title, category, description, color } = Astro.props
+---
+
+<div class="group cursor-pointer">
+  <div class={`aspect-[4/3] bg-gradient-to-br ${color} rounded-xl mb-4 overflow-hidden relative`}>
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
+      <span class="text-white opacity-0 group-hover:opacity-100 transition font-semibold">View Project</span>
+    </div>
+  </div>
+  <span class="text-sm text-purple-600 font-medium">{category}</span>
+  <h3 class="text-xl font-semibold text-slate-900 mt-1 group-hover:text-purple-600 transition">{title}</h3>
+  <p class="text-slate-600 mt-2">{description}</p>
+</div>

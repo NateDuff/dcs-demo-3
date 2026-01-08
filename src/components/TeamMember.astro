@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string
+  role: string
+  bio: string
+  image: string
+}
+
+const { name, role, bio } = Astro.props
+---
+
+<div class="text-center">
+  <div class="w-32 h-32 bg-gradient-to-br from-purple-200 to-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+    <span class="text-4xl font-bold text-purple-600">{name.charAt(0)}</span>
+  </div>
+  <h3 class="text-lg font-semibold text-slate-900">{name}</h3>
+  <p class="text-purple-600 font-medium">{role}</p>
+  <p class="text-slate-600 mt-2 text-sm">{bio}</p>
+</div>

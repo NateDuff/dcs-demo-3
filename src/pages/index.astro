@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Services from '../components/Services.astro'
+import Stats from '../components/Stats.astro'
+import Testimonials from '../components/Testimonials.astro'
+import CTA from '../components/CTA.astro'
+import { t, getPageSeo } from '@duffcloudservices/cms-astro'
+
+const seo = getPageSeo('home')
+---
+
+<Layout 
+  title={seo?.title ?? "Award-Winning Creative Agency"}
+  description={seo?.description ?? "Transform your brand with Pixel Forge Creative."}
+>
+  <Hero
+    title={t('home', 'hero.title', 'We Build Digital Experiences That Matter')}
+    subtitle={t('home', 'hero.subtitle', 'Award-winning creative agency specializing in brand identity, web design, and digital marketing that drives results.')}
+    cta={t('home', 'hero.cta', 'Start Your Project')}
+    ctaLink="/contact"
+  />
+  
+  <Stats />
+  
+  <Services />
+  
+  <Testimonials />
+  
+  <CTA 
+    title="Ready to Transform Your Brand?"
+    description="Let's create something amazing together."
+    buttonText={t('global', 'cta.getStarted', 'Get Started')}
+    buttonLink="/contact"
+  />
+</Layout>

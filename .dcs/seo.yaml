@@ -1,0 +1,67 @@
+# .dcs/seo.yaml
+# Managed by DCS Portal - Do not edit manually
+# SEO configuration for Pixel Forge Creative
+
+version: 1
+lastUpdated: "2026-01-06T00:00:00Z"
+updatedBy: "initial-setup"
+
+global:
+  siteName: Pixel Forge Creative
+  siteUrl: https://demo.duffcloudservices.com
+  locale: en_US
+  defaultTitle: Pixel Forge Creative | Award-Winning Design Agency
+  defaultDescription: Transform your brand with Pixel Forge Creative. We specialize in brand identity, web design, and digital marketing that drives results.
+  titleTemplate: "%s | Pixel Forge Creative"
+
+  social:
+    twitter: "@pixelforge"
+    linkedin: "pixel-forge-creative"
+
+  images:
+    logo: https://demo.duffcloudservices.com/logo.svg
+    ogDefault: https://demo.duffcloudservices.com/og-image.jpg
+
+  robots: "index, follow"
+
+  schemas:
+    - type: Organization
+      properties:
+        name: Pixel Forge Creative
+        description: Award-winning creative agency specializing in brand identity, web design, and digital marketing.
+        url: https://demo.duffcloudservices.com
+        logo: https://demo.duffcloudservices.com/logo.svg
+
+pages:
+  home:
+    title: Award-Winning Creative Agency
+    description: Transform your brand with Pixel Forge Creative. We specialize in brand identity, web design, and digital marketing that drives results.
+    noTitleTemplate: true
+    openGraph:
+      type: website
+    twitter:
+      card: summary_large_image
+
+  services:
+    title: Our Services
+    description: Comprehensive creative solutions including brand identity, web design, digital marketing, and motion graphics.
+    openGraph:
+      type: website
+
+  portfolio:
+    title: Our Work
+    description: Explore our portfolio of brand identities, websites, and marketing campaigns that have transformed businesses.
+    openGraph:
+      type: website
+
+  about:
+    title: About Us
+    description: Meet the team behind Pixel Forge Creative. Passionate creatives, strategists, and technologists working together.
+    openGraph:
+      type: website
+
+  contact:
+    title: Contact Us
+    description: Ready to start your project? Get in touch with Pixel Forge Creative to discuss your brand and digital needs.
+    openGraph:
+      type: website

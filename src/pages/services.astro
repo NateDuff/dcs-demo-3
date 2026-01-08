@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ServiceCard from '../components/ServiceCard.astro'
+import CTA from '../components/CTA.astro'
+---
+
+<Layout 
+  title="Our Services" 
+  description="Comprehensive creative solutions including brand identity, web design, digital marketing, and motion graphics."
+>
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Services That Elevate Your Brand
+        </h1>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          Comprehensive creative solutions tailored to your business goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="grid gap-16">
+        <ServiceCard
+          title="Brand Identity & Strategy"
+          description="We craft distinctive brand identities that tell your story and connect with your target audience. From logo design to brand guidelines, we ensure consistency across all touchpoints."
+          features={["Logo Design", "Brand Guidelines", "Visual Identity", "Brand Strategy", "Messaging Framework"]}
+          icon="palette"
+          reverse={false}
+        />
+        
+        <ServiceCard
+          title="Web Design & Development"
+          description="Custom websites that blend stunning aesthetics with intuitive user experience. We build fast, accessible, and SEO-optimized sites that drive results."
+          features={["Custom Design", "Responsive Development", "CMS Integration", "E-commerce", "Performance Optimization"]}
+          icon="code"
+          reverse={true}
+        />
+        
+        <ServiceCard
+          title="Digital Marketing"
+          description="Strategic marketing campaigns that reach the right audience at the right time. We combine creativity with data to maximize your ROI."
+          features={["Social Media", "Content Strategy", "SEO", "Paid Advertising", "Email Marketing"]}
+          icon="chart"
+          reverse={false}
+        />
+        
+        <ServiceCard
+          title="Motion & Video"
+          description="Engaging motion graphics and video content that captivates your audience and brings your brand to life."
+          features={["Brand Videos", "Social Content", "Animation", "Product Demos", "Motion Graphics"]}
+          icon="video"
+          reverse={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <CTA 
+    title="Ready to Elevate Your Brand?"
+    description="Let's discuss how we can help you achieve your goals."
+    buttonText="Start a Project"
+    buttonLink="/contact"
+  />
+</Layout>

@@ -1,0 +1,37 @@
+---
+const testimonials = [
+  {
+    quote: "Pixel Forge transformed our brand completely. Their creative vision exceeded all expectations.",
+    author: "Sarah Chen",
+    role: "CEO of TechStart"
+  },
+  {
+    quote: "The website they built for us increased conversions by 150%. Incredible work.",
+    author: "Marcus Rivera",
+    role: "Founder of GreenLeaf"
+  }
+]
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What Our Clients Say</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {testimonials.map((testimonial) => (
+        <div class="bg-slate-50 p-8 rounded-xl">
+          <svg class="w-10 h-10 text-purple-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <p class="text-lg text-slate-700 mb-6">{testimonial.quote}</p>
+          <div>
+            <div class="font-semibold text-slate-900">{testimonial.author}</div>
+            <div class="text-sm text-slate-500">{testimonial.role}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+# .dcs/pages.yaml
+# Page registry for DCS CMS integration
+# Pixel Forge Creative - Creative Agency Demo
+
+version: 3
+siteSlug: demo-3
+lastUpdated: "2026-01-08T00:00:00Z"
+generatedBy: manual-setup
+
+pages:
+  - slug: home
+    path: /
+    type: static
+    title: Home
+    deletable: false
+
+  - slug: services
+    path: /services
+    type: static
+    title: Services
+    deletable: false
+
+  - slug: portfolio
+    path: /portfolio
+    type: static
+    title: Portfolio
+    deletable: true
+
+  - slug: about
+    path: /about
+    type: static
+    title: About
+    deletable: true
+
+  - slug: contact
+    path: /contact
+    type: static
+    title: Contact
+    deletable: false
+
+excluded:
+  - /404
+  - /_*
+
+snapshot:
+  viewport:
+    width: 1280
+    height: 720
+  waitAfterLoad: 3000
+  captureFullPage: true

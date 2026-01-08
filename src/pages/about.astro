@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro'
+import TeamMember from '../components/TeamMember.astro'
+import CTA from '../components/CTA.astro'
+
+const team = [
+  {
+    name: "Alex Morgan",
+    role: "Creative Director",
+    bio: "15+ years of experience leading creative teams at top agencies.",
+    image: "/images/team/alex.jpg"
+  },
+  {
+    name: "Jordan Lee",
+    role: "Lead Designer",
+    bio: "Award-winning designer with a passion for user-centered design.",
+    image: "/images/team/jordan.jpg"
+  },
+  {
+    name: "Sam Taylor",
+    role: "Head of Strategy",
+    bio: "Former brand strategist at Fortune 500 companies.",
+    image: "/images/team/sam.jpg"
+  }
+]
+
+const values = [
+  {
+    title: "Creativity First",
+    description: "We push boundaries and challenge conventions to deliver unique solutions.",
+    icon: "lightbulb"
+  },
+  {
+    title: "Collaboration",
+    description: "Great work happens when we work together with our clients as partners.",
+    icon: "users"
+  },
+  {
+    title: "Results-Driven",
+    description: "Beautiful design that delivers measurable impact for your business.",
+    icon: "target"
+  }
+]
+---
+
+<Layout 
+  title="About Us" 
+  description="Meet the team behind Pixel Forge Creative. Passionate creatives, strategists, and technologists working together."
+>
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          About Pixel Forge
+        </h1>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          We're a team of passionate creatives, strategists, and technologists.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-slate-900 mb-6">Our Story</h2>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          Founded in 2018, Pixel Forge started with a simple belief — great design can transform businesses. 
+          Today, we've helped over 120 companies elevate their brands and achieve their goals. Our team 
+          brings together expertise in design, technology, and marketing to deliver holistic solutions 
+          that make a real difference.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Our Values</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {values.map((value) => (
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {value.icon === "lightbulb" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                )}
+                {value.icon === "users" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                )}
+                {value.icon === "target" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                )}
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2">{value.title}</h3>
+            <p class="text-slate-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Meet the Team</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {team.map((member) => (
+          <TeamMember {...member} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA 
+    title="Want to Join Our Team?"
+    description="We're always looking for talented people."
+    buttonText="View Careers"
+    buttonLink="/contact"
+  />
+</Layout>

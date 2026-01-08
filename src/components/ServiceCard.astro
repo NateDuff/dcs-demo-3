@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string
+  description: string
+  features: string[]
+  icon: string
+  reverse: boolean
+}
+
+const { title, description, features, icon, reverse } = Astro.props
+---
+
+<div class={`grid md:grid-cols-2 gap-12 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
+  <div class={reverse ? 'md:order-2' : ''}>
+    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {icon === "palette" && (
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        )}
+        {icon === "code" && (
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        )}
+        {icon === "chart" && (
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        )}
+        {icon === "video" && (
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        )}
+      </svg>
+    </div>
+    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
+    <p class="text-lg text-slate-600 mb-6">{description}</p>
+    <div class="flex flex-wrap gap-2">
+      {features.map((feature) => (
+        <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+          {feature}
+        </span>
+      ))}
+    </div>
+  </div>
+  <div class={`bg-gradient-to-br from-purple-100 to-indigo-100 rounded-2xl aspect-video flex items-center justify-center ${reverse ? 'md:order-1' : ''}`}>
+    <span class="text-purple-400 text-sm">Service illustration</span>
+  </div>
+</div>

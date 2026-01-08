@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout 
+  title="Contact Us" 
+  description="Ready to start your project? Get in touch with Pixel Forge Creative to discuss your brand and digital needs."
+>
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Let's Create Something Amazing
+        </h1>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          Ready to start your project? We'd love to hear from you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">Send us a message</h2>
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Your Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                placeholder="John Doe"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                placeholder="john@example.com"
+              />
+            </div>
+            <div>
+              <label for="company" class="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                placeholder="Your Company"
+              />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Tell us about your project</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition resize-none"
+                placeholder="Describe your project, goals, and timeline..."
+              ></textarea>
+            </div>
+            <button 
+              type="submit" 
+              class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+          <div class="space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Email</h3>
+                <p class="text-slate-600">hello@pixelforge.studio</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Phone</h3>
+                <p class="text-slate-600">(555) 123-4567</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Address</h3>
+                <p class="text-slate-600">123 Creative Way<br />San Francisco, CA 94102</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Business Hours</h3>
+                <p class="text-slate-600">Mon-Fri: 9am - 6pm PST</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="mt-8 bg-slate-100 rounded-xl h-64 flex items-center justify-center">
+            <p class="text-slate-500">Interactive map coming soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

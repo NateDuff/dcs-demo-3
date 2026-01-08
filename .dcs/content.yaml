@@ -1,0 +1,113 @@
+# .dcs/content.yaml
+# Managed by DCS Portal - Do not edit manually
+# Text content for Pixel Forge Creative agency site
+
+version: 1
+lastUpdated: "2026-01-06T00:00:00Z"
+updatedBy: "initial-setup"
+
+global:
+  nav.home: Home
+  nav.services: Services
+  nav.portfolio: Portfolio
+  nav.about: About
+  nav.contact: Contact
+  footer.copyright: © 2026 Pixel Forge Creative. All rights reserved.
+  footer.tagline: Crafting digital experiences that inspire.
+  cta.getStarted: Get Started
+  cta.learnMore: Learn More
+  cta.viewWork: View Our Work
+
+pages:
+  home:
+    hero.title: We Build Digital Experiences That Matter
+    hero.subtitle: Award-winning creative agency specializing in brand identity, web design, and digital marketing that drives results.
+    hero.cta: Start Your Project
+    services.title: Our Services
+    services.subtitle: From concept to launch, we bring your vision to life.
+    services.branding.title: Brand Identity
+    services.branding.description: Strategic brand development that captures your essence and resonates with your audience.
+    services.webdesign.title: Web Design
+    services.webdesign.description: Beautiful, responsive websites that convert visitors into customers.
+    services.marketing.title: Digital Marketing
+    services.marketing.description: Data-driven campaigns that amplify your reach and drive measurable growth.
+    testimonials.title: What Our Clients Say
+    testimonials.quote1: "Pixel Forge transformed our brand completely. Their creative vision exceeded all expectations."
+    testimonials.author1: Sarah Chen, CEO of TechStart
+    testimonials.quote2: "The website they built for us increased conversions by 150%. Incredible work."
+    testimonials.author2: Marcus Rivera, Founder of GreenLeaf
+    stats.projects: "250+"
+    stats.projectsLabel: Projects Delivered
+    stats.clients: "120+"
+    stats.clientsLabel: Happy Clients
+    stats.awards: "18"
+    stats.awardsLabel: Design Awards
+  
+  services:
+    hero.title: Services That Elevate Your Brand
+    hero.subtitle: Comprehensive creative solutions tailored to your business goals.
+    branding.title: Brand Identity & Strategy
+    branding.description: We craft distinctive brand identities that tell your story and connect with your target audience. From logo design to brand guidelines, we ensure consistency across all touchpoints.
+    branding.features: "Logo Design, Brand Guidelines, Visual Identity, Brand Strategy, Messaging Framework"
+    webdesign.title: Web Design & Development
+    webdesign.description: Custom websites that blend stunning aesthetics with intuitive user experience. We build fast, accessible, and SEO-optimized sites that drive results.
+    webdesign.features: "Custom Design, Responsive Development, CMS Integration, E-commerce, Performance Optimization"
+    marketing.title: Digital Marketing
+    marketing.description: Strategic marketing campaigns that reach the right audience at the right time. We combine creativity with data to maximize your ROI.
+    marketing.features: "Social Media, Content Strategy, SEO, Paid Advertising, Email Marketing"
+    motion.title: Motion & Video
+    motion.description: Engaging motion graphics and video content that captivates your audience and brings your brand to life.
+    motion.features: "Brand Videos, Social Content, Animation, Product Demos, Motion Graphics"
+  
+  portfolio:
+    hero.title: Our Work
+    hero.subtitle: A selection of projects we're proud to have delivered.
+    project1.title: TechStart Rebrand
+    project1.category: Brand Identity
+    project1.description: Complete brand overhaul for a growing SaaS company.
+    project2.title: GreenLeaf E-commerce
+    project2.category: Web Design
+    project2.description: High-converting online store with custom Shopify theme.
+    project3.title: Urban Fitness Campaign
+    project3.category: Digital Marketing
+    project3.description: Multi-channel fitness brand launch campaign.
+    project4.title: Artisan Coffee Visual Identity
+    project4.category: Brand Identity
+    project4.description: Warm, inviting brand for local coffee roaster.
+    project5.title: Finance Pro Dashboard
+    project5.category: UI/UX Design
+    project5.description: Modern dashboard design for fintech application.
+    project6.title: Wellness App
+    project6.category: Mobile Design
+    project6.description: Calming, user-friendly wellness tracking app.
+  
+  about:
+    hero.title: About Pixel Forge
+    hero.subtitle: We're a team of passionate creatives, strategists, and technologists.
+    story.title: Our Story
+    story.content: Founded in 2018, Pixel Forge started with a simple belief - great design can transform businesses. Today, we've helped over 120 companies elevate their brands and achieve their goals. Our team brings together expertise in design, technology, and marketing to deliver holistic solutions.
+    values.title: Our Values
+    values.creativity: "Creativity First - We push boundaries and challenge conventions."
+    values.collaboration: "Collaboration - Great work happens when we work together."
+    values.results: "Results-Driven - Beautiful design that delivers measurable impact."
+    team.title: Meet the Team
+    team.member1.name: Alex Morgan
+    team.member1.role: Creative Director
+    team.member2.name: Jordan Lee
+    team.member2.role: Lead Designer
+    team.member3.name: Sam Taylor
+    team.member3.role: Head of Strategy
+  
+  contact:
+    hero.title: Let's Create Something Amazing
+    hero.subtitle: Ready to start your project? We'd love to hear from you.
+    form.name: Your Name
+    form.email: Email Address
+    form.company: Company Name
+    form.message: Tell us about your project
+    form.submit: Send Message
+    info.title: Get in Touch
+    info.email: hello@pixelforge.studio
+    info.phone: (555) 123-4567
+    info.address: "123 Creative Way, San Francisco, CA 94102"
+    info.hours: "Mon-Fri: 9am - 6pm PST"

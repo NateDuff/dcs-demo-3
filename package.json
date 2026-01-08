@@ -1,0 +1,21 @@
+{
+  "name": "astro-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@duffcloudservices/cms-astro": "link:../../packages/cms-astro",
+    "astro": "^5.1.1",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
+  }
+}

@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import CTA from '../components/CTA.astro'
+
+const projects = [
+  {
+    title: "TechStart Rebrand",
+    category: "Brand Identity",
+    description: "Complete brand overhaul for a growing SaaS company.",
+    image: "/images/projects/techstart.jpg",
+    color: "from-purple-500 to-indigo-600"
+  },
+  {
+    title: "GreenLeaf E-commerce",
+    category: "Web Design",
+    description: "High-converting online store with custom Shopify theme.",
+    image: "/images/projects/greenleaf.jpg",
+    color: "from-emerald-500 to-teal-600"
+  },
+  {
+    title: "Urban Fitness Campaign",
+    category: "Digital Marketing",
+    description: "Multi-channel fitness brand launch campaign.",
+    image: "/images/projects/urbanfitness.jpg",
+    color: "from-orange-500 to-red-600"
+  },
+  {
+    title: "Artisan Coffee Visual Identity",
+    category: "Brand Identity",
+    description: "Warm, inviting brand for local coffee roaster.",
+    image: "/images/projects/artisancoffee.jpg",
+    color: "from-amber-500 to-orange-600"
+  },
+  {
+    title: "Finance Pro Dashboard",
+    category: "UI/UX Design",
+    description: "Modern dashboard design for fintech application.",
+    image: "/images/projects/financepro.jpg",
+    color: "from-blue-500 to-cyan-600"
+  },
+  {
+    title: "Wellness App",
+    category: "Mobile Design",
+    description: "Calming, user-friendly wellness tracking app.",
+    image: "/images/projects/wellness.jpg",
+    color: "from-pink-500 to-rose-600"
+  }
+]
+---
+
+<Layout 
+  title="Our Work" 
+  description="Explore our portfolio of brand identities, websites, and marketing campaigns that have transformed businesses."
+>
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Our Work
+        </h1>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          A selection of projects we're proud to have delivered.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA 
+    title="Like What You See?"
+    description="Let's create something amazing for your brand."
+    buttonText="Start Your Project"
+    buttonLink="/contact"
+  />
+</Layout>
