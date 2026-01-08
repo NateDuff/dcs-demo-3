@@ -8,7 +8,7 @@ updatedBy: "initial-setup"
 
 global:
   siteName: Pixel Forge Creative
-  siteUrl: https://demo.duffcloudservices.com
+  siteUrl: https://demo-3.duffcloudservices.com
   locale: en_US
   defaultTitle: Pixel Forge Creative | Award-Winning Design Agency
   defaultDescription: Transform your brand with Pixel Forge Creative. We specialize in brand identity, web design, and digital marketing that drives results.
@@ -19,8 +19,8 @@ global:
     linkedin: "pixel-forge-creative"
 
   images:
-    logo: https://demo.duffcloudservices.com/logo.svg
-    ogDefault: https://demo.duffcloudservices.com/og-image.jpg
+    logo: https://demo-3.duffcloudservices.com/logo.svg
+    ogDefault: https://demo-3.duffcloudservices.com/og-image.jpg
 
   robots: "index, follow"
 
@@ -29,8 +29,8 @@ global:
       properties:
         name: Pixel Forge Creative
         description: Award-winning creative agency specializing in brand identity, web design, and digital marketing.
-        url: https://demo.duffcloudservices.com
-        logo: https://demo.duffcloudservices.com/logo.svg
+        url: https://demo-3.duffcloudservices.com
+        logo: https://demo-3.duffcloudservices.com/logo.svg
 
 pages:
   home:
