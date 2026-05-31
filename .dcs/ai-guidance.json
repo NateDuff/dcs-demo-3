@@ -1,0 +1,16 @@
+{
+  "source": "dcs-again",
+  "updated": "2026-05-31T07:47:46.8100394-04:00",
+  "skills": [
+    "site-submodule-operations",
+    "site-content-editing",
+    "site-forms",
+    "site-design-system",
+    "site-preview-deploy"
+  ],
+  "agents": [
+    "frontend",
+    "reviewer",
+    "planner"
+  ]
+}

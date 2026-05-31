@@ -118,3 +118,19 @@ The site is hosted on Azure Blob Storage with static website hosting enabled.
 For questions about DCS integration:
 - **Portal**: https://portal.duffcloudservices.com
 - **Documentation**: https://docs.duffcloudservices.com
+
+<!-- DCS-AI-GUIDANCE:START (managed by dcs-again/cli/ai-guidance/sync-site-guidance.ps1) -->
+## AI skills & subagents (synced from dcs-again)
+
+Shared, monorepo-managed skills available in this repo (in `.claude/skills/` and `.agents/skills/`):
+- `site-submodule-operations`
+- `site-content-editing`
+- `site-forms`
+- `site-design-system`
+- `site-preview-deploy`
+
+Site subagents (in `.claude/agents/` and `.agents/agents/`): `frontend`, `reviewer`, `planner`.
+
+This repo also has a `source: site-local` design skill that owns this site's specific brand/design decisions — read it first for visual work. Do not hand-edit the synced files above; edit them in dcs-again and re-run the sync.
+<!-- DCS-AI-GUIDANCE:END -->
+
