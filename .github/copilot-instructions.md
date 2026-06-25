@@ -123,14 +123,18 @@ For questions about DCS integration:
 ## AI skills & subagents (synced from dcs-again)
 
 Shared, monorepo-managed skills available in this repo (in `.claude/skills/` and `.agents/skills/`):
+- `dcs-ui-ux`
+- `dcs-product-motion`
 - `site-submodule-operations`
 - `site-content-editing`
 - `site-forms`
 - `site-design-system`
 - `site-preview-deploy`
+- `dcs-seo`
 
 Site subagents (in `.claude/agents/` and `.agents/agents/`): `frontend`, `reviewer`, `planner`.
 
 This repo also has a `source: site-local` design skill that owns this site's specific brand/design decisions — read it first for visual work. Do not hand-edit the synced files above; edit them in dcs-again and re-run the sync.
 <!-- DCS-AI-GUIDANCE:END -->
+
 

@@ -1,12 +1,15 @@
 {
   "source": "dcs-again",
-  "updated": "2026-05-31T07:47:46.8100394-04:00",
+  "updated": "2026-06-25T13:32:24.9512413-04:00",
   "skills": [
+    "dcs-ui-ux",
+    "dcs-product-motion",
     "site-submodule-operations",
     "site-content-editing",
     "site-forms",
     "site-design-system",
-    "site-preview-deploy"
+    "site-preview-deploy",
+    "dcs-seo"
   ],
   "agents": [
     "frontend",
