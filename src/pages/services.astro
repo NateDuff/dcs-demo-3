@@ -2,67 +2,75 @@
 import Layout from '../layouts/Layout.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 import CTA from '../components/CTA.astro'
+import { t, getPageSeo } from '@duffcloudservices/cms-astro'
+
+const seo = getPageSeo('services')
 ---
 
 <Layout 
-  title="Our Services" 
-  description="Comprehensive creative solutions including brand identity, web design, digital marketing, and motion graphics."
+  title={seo?.title ?? "Our Services"}
+  description={seo?.description ?? "Comprehensive creative solutions including brand identity, web design, digital marketing, and motion graphics."}
 >
-  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800" data-section="hero" data-section-label="Hero">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Services That Elevate Your Brand
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-text-key="services.hero.title">
+          {t('services', 'hero.title', 'Services That Elevate Your Brand')}
         </h1>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-          Comprehensive creative solutions tailored to your business goals.
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto" data-text-key="services.hero.subtitle">
+          {t('services', 'hero.subtitle', 'Comprehensive creative solutions tailored to your business goals.')}
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white" data-section="services-list" data-section-label="Services List">
     <div class="container mx-auto px-6">
-      <div class="grid gap-16">
+      <div class="grid gap-16" data-dynamic="true">
         <ServiceCard
-          title="Brand Identity & Strategy"
-          description="We craft distinctive brand identities that tell your story and connect with your target audience. From logo design to brand guidelines, we ensure consistency across all touchpoints."
+          title={t('services', 'branding.title', 'Brand Identity & Strategy')}
+          description={t('services', 'branding.description', 'We craft distinctive brand identities that tell your story and connect with your target audience. From logo design to brand guidelines, we ensure consistency across all touchpoints.')}
           features={["Logo Design", "Brand Guidelines", "Visual Identity", "Brand Strategy", "Messaging Framework"]}
           icon="palette"
           reverse={false}
+          serviceKey="branding"
         />
         
         <ServiceCard
-          title="Web Design & Development"
-          description="Custom websites that blend stunning aesthetics with intuitive user experience. We build fast, accessible, and SEO-optimized sites that drive results."
+          title={t('services', 'webdesign.title', 'Web Design & Development')}
+          description={t('services', 'webdesign.description', 'Custom websites that blend stunning aesthetics with intuitive user experience. We build fast, accessible, and SEO-optimized sites that drive results.')}
           features={["Custom Design", "Responsive Development", "CMS Integration", "E-commerce", "Performance Optimization"]}
           icon="code"
           reverse={true}
+          serviceKey="webdesign"
         />
         
         <ServiceCard
-          title="Digital Marketing"
-          description="Strategic marketing campaigns that reach the right audience at the right time. We combine creativity with data to maximize your ROI."
+          title={t('services', 'marketing.title', 'Digital Marketing')}
+          description={t('services', 'marketing.description', 'Strategic marketing campaigns that reach the right audience at the right time. We combine creativity with data to maximize your ROI.')}
           features={["Social Media", "Content Strategy", "SEO", "Paid Advertising", "Email Marketing"]}
           icon="chart"
           reverse={false}
+          serviceKey="marketing"
         />
         
         <ServiceCard
-          title="Motion & Video"
-          description="Engaging motion graphics and video content that captivates your audience and brings your brand to life."
+          title={t('services', 'motion.title', 'Motion & Video')}
+          description={t('services', 'motion.description', 'Engaging motion graphics and video content that captivates your audience and brings your brand to life.')}
           features={["Brand Videos", "Social Content", "Animation", "Product Demos", "Motion Graphics"]}
           icon="video"
           reverse={true}
+          serviceKey="motion"
         />
       </div>
     </div>
   </section>
 
   <CTA 
-    title="Ready to Elevate Your Brand?"
-    description="Let's discuss how we can help you achieve your goals."
-    buttonText="Start a Project"
+    title={t('services', 'cta.title', "Ready to Elevate Your Brand?")}
+    description={t('services', 'cta.description', "Let's discuss how we can help you achieve your goals.")}
+    buttonText={t('services', 'cta.button', 'Start a Project')}
     buttonLink="/contact"
+    page="services"
   />
 </Layout>

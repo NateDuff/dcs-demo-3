@@ -1,30 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { t, getPageSeo } from '@duffcloudservices/cms-astro'
+
+const seo = getPageSeo('contact')
 ---
 
 <Layout 
-  title="Contact Us" 
-  description="Ready to start your project? Get in touch with Pixel Forge Creative to discuss your brand and digital needs."
+  title={seo?.title ?? "Contact Us"}
+  description={seo?.description ?? "Ready to start your project? Get in touch with Pixel Forge Creative to discuss your brand and digital needs."}
 >
-  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800" data-section="hero" data-section-label="Hero">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Let's Create Something Amazing
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-text-key="contact.hero.title">
+          {t('contact', 'hero.title', "Let's Create Something Amazing")}
         </h1>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-          Ready to start your project? We'd love to hear from you.
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto" data-text-key="contact.hero.subtitle">
+          {t('contact', 'hero.subtitle', "Ready to start your project? We'd love to hear from you.")}
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white" data-section="form" data-section-label="Contact Form">
     <div class="container mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
         <!-- Contact Form -->
         <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-6">Send us a message</h2>
+          <h2 class="text-2xl font-bold text-slate-900 mb-6" data-text-key="contact.form.title">{t('contact', 'form.title', 'Send us a message')}</h2>
           <form class="space-y-6">
             <div>
               <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Your Name</label>
@@ -76,8 +79,8 @@ import Layout from '../layouts/Layout.astro'
         </div>
 
         <!-- Contact Info -->
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+        <div data-section="contact-info" data-section-label="Contact Information">
+          <h2 class="text-2xl font-bold text-slate-900 mb-6" data-text-key="contact.info.title">{t('contact', 'info.title', 'Get in Touch')}</h2>
           <div class="space-y-8">
             <div class="flex items-start gap-4">
               <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -87,7 +90,7 @@ import Layout from '../layouts/Layout.astro'
               </div>
               <div>
                 <h3 class="font-semibold text-slate-900">Email</h3>
-                <p class="text-slate-600">hello@pixelforge.studio</p>
+                <p class="text-slate-600" data-text-key="contact.info.email">{t('contact', 'info.email', 'hello@pixelforge.studio')}</p>
               </div>
             </div>
 
@@ -99,7 +102,7 @@ import Layout from '../layouts/Layout.astro'
               </div>
               <div>
                 <h3 class="font-semibold text-slate-900">Phone</h3>
-                <p class="text-slate-600">(555) 123-4567</p>
+                <p class="text-slate-600" data-text-key="contact.info.phone">{t('contact', 'info.phone', '(555) 123-4567')}</p>
               </div>
             </div>
 
@@ -112,7 +115,7 @@ import Layout from '../layouts/Layout.astro'
               </div>
               <div>
                 <h3 class="font-semibold text-slate-900">Address</h3>
-                <p class="text-slate-600">123 Creative Way<br />San Francisco, CA 94102</p>
+                <p class="text-slate-600" data-text-key="contact.info.address">{t('contact', 'info.address', '123 Creative Way, San Francisco, CA 94102')}</p>
               </div>
             </div>
 
@@ -124,13 +127,13 @@ import Layout from '../layouts/Layout.astro'
               </div>
               <div>
                 <h3 class="font-semibold text-slate-900">Business Hours</h3>
-                <p class="text-slate-600">Mon-Fri: 9am - 6pm PST</p>
+                <p class="text-slate-600" data-text-key="contact.info.hours">{t('contact', 'info.hours', 'Mon-Fri: 9am - 6pm PST')}</p>
               </div>
             </div>
           </div>
 
           <!-- Map placeholder -->
-          <div class="mt-8 bg-slate-100 rounded-xl h-64 flex items-center justify-center">
+          <div class="mt-8 bg-slate-100 rounded-xl h-64 flex items-center justify-center" data-section="map" data-section-label="Map">
             <p class="text-slate-500">Interactive map coming soon</p>
           </div>
         </div>

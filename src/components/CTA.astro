@@ -4,15 +4,16 @@ interface Props {
   description: string
   buttonText: string
   buttonLink: string
+  page?: string
 }
 
-const { title, description, buttonText, buttonLink } = Astro.props
+const { title, description, buttonText, buttonLink, page = 'home' } = Astro.props
 ---
 
-<section class="py-20 bg-gradient-to-r from-purple-600 to-indigo-600">
+<section class="py-20 bg-gradient-to-r from-purple-600 to-indigo-600" data-section="cta" data-section-label="Call to Action">
   <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h2>
-    <p class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">{description}</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-text-key={`${page}.cta.title`}>{title}</h2>
+    <p class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto" data-text-key={`${page}.cta.description`}>{description}</p>
     <a 
       href={buttonLink} 
       class="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition"

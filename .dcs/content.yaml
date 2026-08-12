@@ -42,6 +42,10 @@ pages:
     stats.clientsLabel: Happy Clients
     stats.awards: "18"
     stats.awardsLabel: Design Awards
+    stats.experience: "8"
+    stats.experienceLabel: Years Experience
+    cta.title: Ready to Transform Your Brand?
+    cta.description: Let's create something amazing together.
   
   services:
     hero.title: Services That Elevate Your Brand
@@ -58,6 +62,9 @@ pages:
     motion.title: Motion & Video
     motion.description: Engaging motion graphics and video content that captivates your audience and brings your brand to life.
     motion.features: "Brand Videos, Social Content, Animation, Product Demos, Motion Graphics"
+    cta.title: Ready to Elevate Your Brand?
+    cta.description: Let's discuss how we can help you achieve your goals.
+    cta.button: Start a Project
   
   portfolio:
     hero.title: Our Work
@@ -80,6 +87,9 @@ pages:
     project6.title: Wellness App
     project6.category: Mobile Design
     project6.description: Calming, user-friendly wellness tracking app.
+    cta.title: Like What You See?
+    cta.description: Let's create something amazing for your brand.
+    cta.button: Start Your Project
   
   about:
     hero.title: About Pixel Forge
@@ -87,9 +97,12 @@ pages:
     story.title: Our Story
     story.content: Founded in 2018, Pixel Forge started with a simple belief - great design can transform businesses. Today, we've helped over 120 companies elevate their brands and achieve their goals. Our team brings together expertise in design, technology, and marketing to deliver holistic solutions.
     values.title: Our Values
-    values.creativity: "Creativity First - We push boundaries and challenge conventions."
-    values.collaboration: "Collaboration - Great work happens when we work together."
-    values.results: "Results-Driven - Beautiful design that delivers measurable impact."
+    values.creativity.title: Creativity First
+    values.creativity.description: We push boundaries and challenge conventions to deliver unique solutions.
+    values.collaboration.title: Collaboration
+    values.collaboration.description: Great work happens when we work together with our clients as partners.
+    values.results.title: Results-Driven
+    values.results.description: Beautiful design that delivers measurable impact for your business.
     team.title: Meet the Team
     team.member1.name: Alex Morgan
     team.member1.role: Creative Director
@@ -97,6 +110,9 @@ pages:
     team.member2.role: Lead Designer
     team.member3.name: Sam Taylor
     team.member3.role: Head of Strategy
+    cta.title: Want to Join Our Team?
+    cta.description: We're always looking for talented people.
+    cta.button: View Careers
   
   contact:
     hero.title: Let's Create Something Amazing

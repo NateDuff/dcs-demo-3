@@ -5,9 +5,10 @@ interface Props {
   features: string[]
   icon: string
   reverse: boolean
+  serviceKey?: string
 }
 
-const { title, description, features, icon, reverse } = Astro.props
+const { title, description, features, icon, reverse, serviceKey } = Astro.props
 ---
 
 <div class={`grid md:grid-cols-2 gap-12 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
@@ -28,8 +29,8 @@ const { title, description, features, icon, reverse } = Astro.props
         )}
       </svg>
     </div>
-    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
-    <p class="text-lg text-slate-600 mb-6">{description}</p>
+    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4" data-text-key={serviceKey ? `services.${serviceKey}.title` : undefined}>{title}</h3>
+    <p class="text-lg text-slate-600 mb-6" data-text-key={serviceKey ? `services.${serviceKey}.description` : undefined}>{description}</p>
     <div class="flex flex-wrap gap-2">
       {features.map((feature) => (
         <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">

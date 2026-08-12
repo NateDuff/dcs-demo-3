@@ -1,19 +1,21 @@
 ---
+import { t } from '@duffcloudservices/cms-astro'
+
 const stats = [
-  { value: "250+", label: "Projects Delivered" },
-  { value: "120+", label: "Happy Clients" },
-  { value: "18", label: "Design Awards" },
-  { value: "8", label: "Years Experience" }
+  { key: 'projects', value: t('home', 'stats.projects', '250+'), label: t('home', 'stats.projectsLabel', 'Projects Delivered') },
+  { key: 'clients', value: t('home', 'stats.clients', '120+'), label: t('home', 'stats.clientsLabel', 'Happy Clients') },
+  { key: 'awards', value: t('home', 'stats.awards', '18'), label: t('home', 'stats.awardsLabel', 'Design Awards') },
+  { key: 'experience', value: t('home', 'stats.experience', '8'), label: t('home', 'stats.experienceLabel', 'Years Experience') }
 ]
 ---
 
-<section class="py-16 bg-white">
+<section class="py-16 bg-white" data-section="stats" data-section-label="Statistics">
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       {stats.map((stat) => (
         <div class="text-center">
-          <div class="text-4xl md:text-5xl font-bold text-purple-600 mb-2">{stat.value}</div>
-          <div class="text-slate-600 font-medium">{stat.label}</div>
+          <div class="text-4xl md:text-5xl font-bold text-purple-600 mb-2" data-text-key={`home.stats.${stat.key}`}>{stat.value}</div>
+          <div class="text-slate-600 font-medium" data-text-key={`home.stats.${stat.key}Label`}>{stat.label}</div>
         </div>
       ))}
     </div>

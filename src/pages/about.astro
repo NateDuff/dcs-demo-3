@@ -2,23 +2,29 @@
 import Layout from '../layouts/Layout.astro'
 import TeamMember from '../components/TeamMember.astro'
 import CTA from '../components/CTA.astro'
+import { t, getPageSeo } from '@duffcloudservices/cms-astro'
+
+const seo = getPageSeo('about')
 
 const team = [
   {
-    name: "Alex Morgan",
-    role: "Creative Director",
+    key: '1',
+    name: t('about', 'team.member1.name', 'Alex Morgan'),
+    role: t('about', 'team.member1.role', 'Creative Director'),
     bio: "15+ years of experience leading creative teams at top agencies.",
     image: "/images/team/alex.jpg"
   },
   {
-    name: "Jordan Lee",
-    role: "Lead Designer",
+    key: '2',
+    name: t('about', 'team.member2.name', 'Jordan Lee'),
+    role: t('about', 'team.member2.role', 'Lead Designer'),
     bio: "Award-winning designer with a passion for user-centered design.",
     image: "/images/team/jordan.jpg"
   },
   {
-    name: "Sam Taylor",
-    role: "Head of Strategy",
+    key: '3',
+    name: t('about', 'team.member3.name', 'Sam Taylor'),
+    role: t('about', 'team.member3.role', 'Head of Strategy'),
     bio: "Former brand strategist at Fortune 500 companies.",
     image: "/images/team/sam.jpg"
   }
@@ -26,60 +32,60 @@ const team = [
 
 const values = [
   {
-    title: "Creativity First",
-    description: "We push boundaries and challenge conventions to deliver unique solutions.",
+    key: 'creativity',
+    title: t('about', 'values.creativity.title', 'Creativity First'),
+    description: t('about', 'values.creativity.description', 'We push boundaries and challenge conventions to deliver unique solutions.'),
     icon: "lightbulb"
   },
   {
-    title: "Collaboration",
-    description: "Great work happens when we work together with our clients as partners.",
+    key: 'collaboration',
+    title: t('about', 'values.collaboration.title', 'Collaboration'),
+    description: t('about', 'values.collaboration.description', 'Great work happens when we work together with our clients as partners.'),
     icon: "users"
   },
   {
-    title: "Results-Driven",
-    description: "Beautiful design that delivers measurable impact for your business.",
+    key: 'results',
+    title: t('about', 'values.results.title', 'Results-Driven'),
+    description: t('about', 'values.results.description', 'Beautiful design that delivers measurable impact for your business.'),
     icon: "target"
   }
 ]
 ---
 
 <Layout 
-  title="About Us" 
-  description="Meet the team behind Pixel Forge Creative. Passionate creatives, strategists, and technologists working together."
+  title={seo?.title ?? "About Us"}
+  description={seo?.description ?? "Meet the team behind Pixel Forge Creative. Passionate creatives, strategists, and technologists working together."}
 >
-  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800" data-section="hero" data-section-label="Hero">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          About Pixel Forge
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-text-key="about.hero.title">
+          {t('about', 'hero.title', 'About Pixel Forge')}
         </h1>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-          We're a team of passionate creatives, strategists, and technologists.
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto" data-text-key="about.hero.subtitle">
+          {t('about', 'hero.subtitle', "We're a team of passionate creatives, strategists, and technologists.")}
         </p>
       </div>
     </div>
   </section>
 
   <!-- Story Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white" data-section="story" data-section-label="Our Story">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6">Our Story</h2>
-        <p class="text-lg text-slate-600 leading-relaxed">
-          Founded in 2018, Pixel Forge started with a simple belief — great design can transform businesses. 
-          Today, we've helped over 120 companies elevate their brands and achieve their goals. Our team 
-          brings together expertise in design, technology, and marketing to deliver holistic solutions 
-          that make a real difference.
+        <h2 class="text-3xl font-bold text-slate-900 mb-6" data-text-key="about.story.title">{t('about', 'story.title', 'Our Story')}</h2>
+        <p class="text-lg text-slate-600 leading-relaxed" data-text-key="about.story.content">
+          {t('about', 'story.content', "Founded in 2018, Pixel Forge started with a simple belief — great design can transform businesses. Today, we've helped over 120 companies elevate their brands and achieve their goals. Our team brings together expertise in design, technology, and marketing to deliver holistic solutions that make a real difference.")}
         </p>
       </div>
     </div>
   </section>
 
   <!-- Values Section -->
-  <section class="py-20 bg-slate-50">
+  <section class="py-20 bg-slate-50" data-section="values" data-section-label="Our Values">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Our Values</h2>
-      <div class="grid md:grid-cols-3 gap-8">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center" data-text-key="about.values.title">{t('about', 'values.title', 'Our Values')}</h2>
+      <div class="grid md:grid-cols-3 gap-8" data-dynamic="true">
         {values.map((value) => (
           <div class="bg-white p-8 rounded-xl shadow-sm">
             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
@@ -95,8 +101,8 @@ const values = [
                 )}
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">{value.title}</h3>
-            <p class="text-slate-600">{value.description}</p>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2" data-text-key={`about.values.${value.key}.title`}>{value.title}</h3>
+            <p class="text-slate-600" data-text-key={`about.values.${value.key}.description`}>{value.description}</p>
           </div>
         ))}
       </div>
@@ -104,10 +110,10 @@ const values = [
   </section>
 
   <!-- Team Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white" data-section="team" data-section-label="Meet the Team">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Meet the Team</h2>
-      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center" data-text-key="about.team.title">{t('about', 'team.title', 'Meet the Team')}</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto" data-dynamic="true">
         {team.map((member) => (
           <TeamMember {...member} />
         ))}
@@ -116,9 +122,10 @@ const values = [
   </section>
 
   <CTA 
-    title="Want to Join Our Team?"
-    description="We're always looking for talented people."
-    buttonText="View Careers"
+    title={t('about', 'cta.title', "Want to Join Our Team?")}
+    description={t('about', 'cta.description', "We're always looking for talented people.")}
+    buttonText={t('about', 'cta.button', 'View Careers')}
     buttonLink="/contact"
+    page="about"
   />
 </Layout>

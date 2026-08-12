@@ -1,33 +1,38 @@
 ---
+import { t } from '@duffcloudservices/cms-astro'
+
 const services = [
   {
-    title: "Brand Identity",
-    description: "Strategic brand development that captures your essence and resonates with your audience.",
+    key: 'branding',
+    title: t('home', 'services.branding.title', 'Brand Identity'),
+    description: t('home', 'services.branding.description', 'Strategic brand development that captures your essence and resonates with your audience.'),
     icon: "palette"
   },
   {
-    title: "Web Design",
-    description: "Beautiful, responsive websites that convert visitors into customers.",
+    key: 'webdesign',
+    title: t('home', 'services.webdesign.title', 'Web Design'),
+    description: t('home', 'services.webdesign.description', 'Beautiful, responsive websites that convert visitors into customers.'),
     icon: "code"
   },
   {
-    title: "Digital Marketing",
-    description: "Data-driven campaigns that amplify your reach and drive measurable growth.",
+    key: 'marketing',
+    title: t('home', 'services.marketing.title', 'Digital Marketing'),
+    description: t('home', 'services.marketing.description', 'Data-driven campaigns that amplify your reach and drive measurable growth.'),
     icon: "chart"
   }
 ]
 ---
 
-<section class="py-20 bg-slate-50">
+<section class="py-20 bg-slate-50" data-section="services" data-section-label="Services">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Services</h2>
-      <p class="text-xl text-slate-600 max-w-2xl mx-auto">
-        From concept to launch, we bring your vision to life.
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4" data-text-key="home.services.title">{t('home', 'services.title', 'Our Services')}</h2>
+      <p class="text-xl text-slate-600 max-w-2xl mx-auto" data-text-key="home.services.subtitle">
+        {t('home', 'services.subtitle', 'From concept to launch, we bring your vision to life.')}
       </p>
     </div>
     
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-8" data-dynamic="true">
       {services.map((service) => (
         <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition group">
           <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition">
@@ -43,8 +48,8 @@ const services = [
               )}
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-3">{service.title}</h3>
-          <p class="text-slate-600">{service.description}</p>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3" data-text-key={`home.services.${service.key}.title`}>{service.title}</h3>
+          <p class="text-slate-600" data-text-key={`home.services.${service.key}.description`}>{service.description}</p>
         </div>
       ))}
     </div>

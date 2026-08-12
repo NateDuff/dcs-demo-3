@@ -19,6 +19,7 @@ const seo = getPageSeo('home')
     subtitle={t('home', 'hero.subtitle', 'Award-winning creative agency specializing in brand identity, web design, and digital marketing that drives results.')}
     cta={t('home', 'hero.cta', 'Start Your Project')}
     ctaLink="/contact"
+    page="home"
   />
   
   <Stats />
@@ -28,9 +29,10 @@ const seo = getPageSeo('home')
   <Testimonials />
   
   <CTA 
-    title="Ready to Transform Your Brand?"
-    description="Let's create something amazing together."
+    title={t('home', 'cta.title', 'Ready to Transform Your Brand?')}
+    description={t('home', 'cta.description', "Let's create something amazing together.")}
     buttonText={t('global', 'cta.getStarted', 'Get Started')}
     buttonLink="/contact"
+    page="home"
   />
 </Layout>

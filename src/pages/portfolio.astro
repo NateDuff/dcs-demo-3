@@ -2,47 +2,56 @@
 import Layout from '../layouts/Layout.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import CTA from '../components/CTA.astro'
+import { t, getPageSeo } from '@duffcloudservices/cms-astro'
+
+const seo = getPageSeo('portfolio')
 
 const projects = [
   {
-    title: "TechStart Rebrand",
-    category: "Brand Identity",
-    description: "Complete brand overhaul for a growing SaaS company.",
+    key: '1',
+    title: t('portfolio', 'project1.title', 'TechStart Rebrand'),
+    category: t('portfolio', 'project1.category', 'Brand Identity'),
+    description: t('portfolio', 'project1.description', 'Complete brand overhaul for a growing SaaS company.'),
     image: "/images/projects/techstart.jpg",
     color: "from-purple-500 to-indigo-600"
   },
   {
-    title: "GreenLeaf E-commerce",
-    category: "Web Design",
-    description: "High-converting online store with custom Shopify theme.",
+    key: '2',
+    title: t('portfolio', 'project2.title', 'GreenLeaf E-commerce'),
+    category: t('portfolio', 'project2.category', 'Web Design'),
+    description: t('portfolio', 'project2.description', 'High-converting online store with custom Shopify theme.'),
     image: "/images/projects/greenleaf.jpg",
     color: "from-emerald-500 to-teal-600"
   },
   {
-    title: "Urban Fitness Campaign",
-    category: "Digital Marketing",
-    description: "Multi-channel fitness brand launch campaign.",
+    key: '3',
+    title: t('portfolio', 'project3.title', 'Urban Fitness Campaign'),
+    category: t('portfolio', 'project3.category', 'Digital Marketing'),
+    description: t('portfolio', 'project3.description', 'Multi-channel fitness brand launch campaign.'),
     image: "/images/projects/urbanfitness.jpg",
     color: "from-orange-500 to-red-600"
   },
   {
-    title: "Artisan Coffee Visual Identity",
-    category: "Brand Identity",
-    description: "Warm, inviting brand for local coffee roaster.",
+    key: '4',
+    title: t('portfolio', 'project4.title', 'Artisan Coffee Visual Identity'),
+    category: t('portfolio', 'project4.category', 'Brand Identity'),
+    description: t('portfolio', 'project4.description', 'Warm, inviting brand for local coffee roaster.'),
     image: "/images/projects/artisancoffee.jpg",
     color: "from-amber-500 to-orange-600"
   },
   {
-    title: "Finance Pro Dashboard",
-    category: "UI/UX Design",
-    description: "Modern dashboard design for fintech application.",
+    key: '5',
+    title: t('portfolio', 'project5.title', 'Finance Pro Dashboard'),
+    category: t('portfolio', 'project5.category', 'UI/UX Design'),
+    description: t('portfolio', 'project5.description', 'Modern dashboard design for fintech application.'),
     image: "/images/projects/financepro.jpg",
     color: "from-blue-500 to-cyan-600"
   },
   {
-    title: "Wellness App",
-    category: "Mobile Design",
-    description: "Calming, user-friendly wellness tracking app.",
+    key: '6',
+    title: t('portfolio', 'project6.title', 'Wellness App'),
+    category: t('portfolio', 'project6.category', 'Mobile Design'),
+    description: t('portfolio', 'project6.description', 'Calming, user-friendly wellness tracking app.'),
     image: "/images/projects/wellness.jpg",
     color: "from-pink-500 to-rose-600"
   }
@@ -50,25 +59,25 @@ const projects = [
 ---
 
 <Layout 
-  title="Our Work" 
-  description="Explore our portfolio of brand identities, websites, and marketing campaigns that have transformed businesses."
+  title={seo?.title ?? "Our Work"}
+  description={seo?.description ?? "Explore our portfolio of brand identities, websites, and marketing campaigns that have transformed businesses."}
 >
-  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+  <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800" data-section="hero" data-section-label="Hero">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Our Work
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-text-key="portfolio.hero.title">
+          {t('portfolio', 'hero.title', 'Our Work')}
         </h1>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-          A selection of projects we're proud to have delivered.
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto" data-text-key="portfolio.hero.subtitle">
+          {t('portfolio', 'hero.subtitle', 'A selection of projects we\'re proud to have delivered.')}
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-slate-50">
+  <section class="py-20 bg-slate-50" data-section="projects" data-section-label="Projects">
     <div class="container mx-auto px-6">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-dynamic="true">
         {projects.map((project) => (
           <ProjectCard {...project} />
         ))}
@@ -77,9 +86,10 @@ const projects = [
   </section>
 
   <CTA 
-    title="Like What You See?"
-    description="Let's create something amazing for your brand."
-    buttonText="Start Your Project"
+    title={t('portfolio', 'cta.title', "Like What You See?")}
+    description={t('portfolio', 'cta.description', "Let's create something amazing for your brand.")}
+    buttonText={t('portfolio', 'cta.button', 'Start Your Project')}
     buttonLink="/contact"
+    page="portfolio"
   />
 </Layout>
