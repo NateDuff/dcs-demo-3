@@ -26,7 +26,9 @@ jobs:
   deploy:
     name: Deploy to Azure Blob Storage
     runs-on: ubuntu-latest
-    if: github.event.before != '0000000000000000000000000000000000000000'
+    # The `before` guard skips branch-creation pushes. workflow_dispatch has no
+    # `before`, so without the event_name arm every manual run silently SKIPS.
+    if: github.event_name == 'workflow_dispatch' || github.event.before != '0000000000000000000000000000000000000000'
 
     steps:
       - name: Checkout repository
