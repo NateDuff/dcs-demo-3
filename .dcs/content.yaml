@@ -31,19 +31,10 @@ pages:
     services.webdesign.description: Beautiful, responsive websites that convert visitors into customers.
     services.marketing.title: Digital Marketing
     services.marketing.description: Data-driven campaigns that amplify your reach and drive measurable growth.
-    testimonials.title: What Our Clients Say
-    testimonials.quote1: "Pixel Forge transformed our brand completely. Their creative vision exceeded all expectations."
-    testimonials.author1: Sarah Chen, CEO of TechStart
-    testimonials.quote2: "The website they built for us increased conversions by 150%. Incredible work."
-    testimonials.author2: Marcus Rivera, Founder of GreenLeaf
-    stats.projects: "250+"
-    stats.projectsLabel: Projects Delivered
-    stats.clients: "120+"
-    stats.clientsLabel: Happy Clients
-    stats.awards: "18"
-    stats.awardsLabel: Design Awards
-    stats.experience: "8"
-    stats.experienceLabel: Years Experience
+    # C-486 §9.5 step 2 — the home.testimonials.* and home.stats.* keys were
+    # removed with the components that rendered them. They carried fabricated
+    # third-party endorsements and invented metrics for a business that does
+    # not exist; per C-365 an unsubstantiable claim is removed, not restated.
     cta.title: Ready to Transform Your Brand?
     cta.description: Let's create something amazing together.
   

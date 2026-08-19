@@ -1,0 +1,5 @@
+# robots.txt must ship byte-identical to the 26-byte body already live on the
+# demo hosts (C-486 §9.5 step 1 / option a1+). This machine has
+# core.autocrlf=true, which would otherwise check the file out with CRLF and
+# publish 27 bytes on the next deploy.
+robots.txt text eol=lf

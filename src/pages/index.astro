@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
 import Services from '../components/Services.astro'
-import Stats from '../components/Stats.astro'
-import Testimonials from '../components/Testimonials.astro'
 import CTA from '../components/CTA.astro'
+// C-486 §9.5 step 2 — Stats.astro and Testimonials.astro removed.
+// They published fabricated third-party claims ("Sarah Chen, CEO of TechStart",
+// "250+ Projects Delivered", "120+ Happy Clients", "18 Design Awards") for a
+// business that does not exist. Per C-365 the honest disposition of an
+// unsubstantiable claim is removal, not a more plausible invention.
 import { t, getPageSeo } from '@duffcloudservices/cms-astro'
 
 const seo = getPageSeo('home')
@@ -22,13 +25,9 @@ const seo = getPageSeo('home')
     page="home"
   />
   
-  <Stats />
-  
   <Services />
-  
-  <Testimonials />
-  
-  <CTA 
+
+  <CTA
     title={t('home', 'cta.title', 'Ready to Transform Your Brand?')}
     description={t('home', 'cta.description', "Let's create something amazing together.")}
     buttonText={t('global', 'cta.getStarted', 'Get Started')}
