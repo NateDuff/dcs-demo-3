@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@duffcloudservices/cms-astro':
-        specifier: ^0.1.1
-        version: 0.1.1(astro@5.18.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.2)(typescript@5.9.3))
+        specifier: ^0.4.4
+        version: 0.4.4(astro@5.18.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.2)(typescript@5.9.3))
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.2.4(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0))
@@ -65,13 +65,13 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@duffcloudservices/cms-astro@0.1.1':
-    resolution: {integrity: sha512-mF1NSHw9x6pr6JFZTpclE1CkLSSMzhcIhWhMh7xzWAqKW7iCKSs+24/P769Sy87QK3SHO1HZ6kUvYg2eudmxlg==}
+  '@duffcloudservices/cms-astro@0.4.4':
+    resolution: {integrity: sha512-TrcHHQPWUlN2WSQKirrgsyOTmT4M05sHCAJ8R2rmmGOyVAv2b9U8V4vxiE1E5tX3jH6i/i78hwghwBrY4TLLUw==}
     peerDependencies:
       astro: ^4.0.0 || ^5.0.0
 
-  '@duffcloudservices/cms-core@0.1.1':
-    resolution: {integrity: sha512-sA9ycTstJkh11jj1vshY1jK/YCbJA9r6WR5FFrqNU8XyHR/cc/RCxM5cxxM8MdzVgLHSNG4PsYLDv36vBd8Qiw==}
+  '@duffcloudservices/cms-core@0.8.4':
+    resolution: {integrity: sha512-4WnO934g8VhhQjGc+IUB/ffmsC7OPylCP/T5Q50ts9ZiVqy4q+d7i1U8BjuBzWRLiVDyhO+RGPdE+qlyaRleBw==}
 
   '@emnapi/runtime@1.10.0':
     resolution: {integrity: sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==}
@@ -1926,12 +1926,12 @@ snapshots:
     dependencies:
       fontkitten: 1.0.3
 
-  '@duffcloudservices/cms-astro@0.1.1(astro@5.18.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.2)(typescript@5.9.3))':
+  '@duffcloudservices/cms-astro@0.4.4(astro@5.18.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.2)(typescript@5.9.3))':
     dependencies:
-      '@duffcloudservices/cms-core': 0.1.1
+      '@duffcloudservices/cms-core': 0.8.4
       astro: 5.18.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.2)(typescript@5.9.3)
 
-  '@duffcloudservices/cms-core@0.1.1':
+  '@duffcloudservices/cms-core@0.8.4':
     dependencies:
       js-yaml: 4.1.1
 
