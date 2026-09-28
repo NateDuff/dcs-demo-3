@@ -1,0 +1,18 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: negative-hero-redesign
+runs: 1
+execution:
+  prompt: |
+    Redesign the hero section on the marketing site so it looks less templated and less AI-generated.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [route-away]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response does NOT run an unslop prose pass on this request. Instead:
+      - routes to dcs-design-taste: this is a design brief for a page surface, and that skill leads with unslop as the copy pass inside it, not the other way round
+

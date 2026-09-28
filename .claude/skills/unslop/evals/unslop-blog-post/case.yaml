@@ -1,0 +1,20 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: unslop-blog-post
+runs: 1
+execution:
+  prompt: |
+    Unslop this blog post before it goes live.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [trigger]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response routes to the unslop skill and then:
+      - runs detect then rewrite in separate contexts, feeding the rewrite only the hit list plus positive targets, never the full catalog
+      - loads .docs/skills/voice-nate-duff.md in pass two because a founder blog post is a Nate-voiced surface
+      - runs the add-soul counter-pass and the 'what still reads as AI' self-audit
+

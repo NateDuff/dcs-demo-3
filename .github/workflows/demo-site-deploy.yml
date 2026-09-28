@@ -5,6 +5,25 @@ on:
     branches:
       - 'release/**'
       - 'master'
+    # C-1997: AI-guidance-only pushes do not deploy. These are EXACTLY the paths
+    # cli/ai-guidance/sync-site-guidance.ps1 writes (.claude/**, .agents/**,
+    # .github/copilot-instructions.md, .dcs/ai-guidance.json) plus the other
+    # agent-guidance files a site repo may carry. No site build reads any of them.
+    # GitHub skips the run only when EVERY changed file in the push matches, so a
+    # push mixing guidance with anything else (content, .dcs/*.yaml, this workflow)
+    # still deploys. NEVER add .github/workflows/**, .dcs/site.yaml, .dcs/pages.yaml,
+    # .dcs/seo.yaml, .dcs/forms/** or anything the build reads - the Go test
+    # TestSiteDeployPathsIgnoreIsGuidanceOnly (cli/site-onboard) reds on that.
+    paths-ignore:
+      - '.claude/**'
+      - '.agents/**'
+      - '.github/copilot-instructions.md'
+      - '.github/instructions/**'
+      - '.github/skills/**'
+      - '.github/agents/**'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - '.dcs/ai-guidance.json'
   workflow_dispatch:
     inputs:
       trigger_reason:

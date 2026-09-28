@@ -1,6 +1,24 @@
 ---
 name: dcs-seo
 description: Use when auditing or improving SEO/GEO/AEO on a DCS customer site — crawlability, metadata, structured data (JSON-LD), local SEO/NAP, AI discovery (llms.txt + AI-bot robots), sitemap/robots/links, GEO citable-content, and Core Web Vitals. Audits the BUILT dist HTML (what crawlers see) and emits fixes THROUGH the cms SEO factory + `.dcs/seo.yaml` — never hand-edited markup. Supersedes the per-site local-business-schema / local-seo / *-seo-audit skills.
+metadata:
+  docKind: skill
+  docClass: guidance
+  title: DCS SEO
+  status: Active
+  owner: Nathan Duff
+  created: 2026-06-22
+  lastVerified: 2026-09-28
+  stalenessSLA: 90
+  relatedDocs:
+    - .github/skills/site-performance-audit/SKILL.md
+    - .github/skills/site-experience-review/SKILL.md
+  codeRefs:
+    - cli/seo-coverage-audit.mjs
+    - packages/cms/
+  updateTriggers:
+    - The cms SEO factory (dcsSeoPlugin/emitStaticHtml) contract changes
+    - The internal RULES_REVIEWED self-gate trips (2026-09-17)
 ---
 <!-- Delivered from the dcs-again monorepo by cli/ai-guidance/sync-site-guidance.ps1. Do not edit here; edit the canonical source in dcs-again/.github and re-run the sync. -->
 
@@ -13,7 +31,7 @@ Two consequences define how this skill works:
 1. **Audit the built `dist/` HTML, not the source.** That is exactly what a crawler sees. `pnpm dev` does NOT run the factory (and `dcsCdnImagePlugin` is off in dev), so source-only or dev-only audits lie.
 2. **Emit fixes through the factory + `.dcs/` metadata, never hand-edited markup.** A fix is a change to `seo.yaml` / `content.yaml` / `site.yaml` / blog frontmatter, or to the shared cms factory. A hand-edited `<meta>`/`<script type="application/ld+json">` in a `.vue`/`.md` is a regression — the next build overwrites it or it drifts from the single source of truth.
 
-> **The recurring false-positive this skill exists to kill:** "empty-shell SPA / no JSON-LD in static HTML / consider prerendering" (or for VitePress "this site does NOT inject SEO yet"). That was true before cms 0.6.0; **`emitStaticHtml`/`transformPageData` made it false.** A *sparse per-page `seo.yaml` is NOT missing SEO* — the factory bakes per-page meta even with thin overrides. **Curl the built page before claiming SEO is absent.** (See Verifier pass.)
+> **The recurring false-positive this skill exists to kill:** "empty-shell SPA / no JSON-LD in static HTML / consider prerendering" (or for VitePress "this site does NOT inject SEO yet"). It is false: the cms factory's **`emitStaticHtml`/`transformPageData` bake SEO into the static HTML.** A *sparse per-page `seo.yaml` is NOT missing SEO* — the factory bakes per-page meta even with thin overrides. **Curl the built page before claiming SEO is absent.** (See Verifier pass.)
 
 Do NOT edit `packages/cms` from this skill — another workflow owns the factory code. This skill *asserts the factory contract*, *wires/configures the factory per site*, and *emits content/metadata fixes*. When a gap is genuinely a factory capability gap (a missing emitter), file it as a platform finding, don't hand-patch markup.
 
@@ -49,7 +67,7 @@ If you cannot confirm a constant is current, treat it as **stale** and flag it r
 | blog frontmatter | post author/date/title | BlogPosting + author Person + visible `dateModified` |
 | `.dcs/ai-guidance.json` | which shared skills this repo loaded | confirm `dcs-seo` is registered so agents load it |
 
-**Fixes write back into these same files** (and only these) — mirroring how `site-content-editing` / `site-preview-deploy` stay metadata-aware.
+**Fixes write back into these same files** (and only these).
 
 ---
 
@@ -60,14 +78,14 @@ If you cannot confirm a constant is current, treat it as **stale** and flag it r
 pnpm build                       # SPA: vite-ssg prerender → dist/ ; VitePress → docs/.vitepress/dist/
 
 # 2. Run the existing per-route coverage gate over the BUILT dist.
-node cli/seo-coverage-audit.mjs <siteDir> --verbose            # title + JSON-LD + og:title + route-diff + length budgets
+node cli/seo-coverage-audit.mjs <siteDir> --verbose            # title + JSON-LD + og:title + FAQ-in-body + route-diff + budgets + freshness
 node cli/seo-coverage-audit.mjs <siteDir> --json --strict-lengths   # machine-readable, length budgets HARD-fail
 
 # 3. Curl the built page (no JS) to confirm what a non-JS AI crawler actually receives.
 #    (Do this against dist/ locally, or the live prod URL after deploy.)
 ```
 
-`cli/seo-coverage-audit.mjs` already asserts per-route: non-default/non-duplicated `<title>` (FAIL), ≥1 parseable JSON-LD (FAIL), present non-default `og:title` (FAIL), configured-but-unemitted route diff (FAIL), orphan emissions (WARN), and SERP length budgets (WARN, or FAIL with `--strict-lengths`). **This skill extends that tool's checklist into the eight areas below.** When a check is missing from the tool, add it to `cli/seo-coverage-audit.mjs` rather than re-implementing ad hoc.
+`cli/seo-coverage-audit.mjs` asserts per-route, all FAIL: non-default/non-duplicated `<title>`, ≥1 parseable JSON-LD, non-default `og:title`, every `FAQPage` question RENDERED in that page's prerendered body (rule + fixtures: `packages/cms/src/seo/faqBodyHonesty.ts`), and the configured-vs-emitted route diff. WARN: orphans, SERP length budgets (`--strict-lengths` to fail), and a stale `.dcs/seo.yaml` `lastUpdated` (every sitemap URL's `<lastmod>`). **This skill extends that checklist into the eight areas below.** When a check is missing, add it there rather than re-implementing ad hoc.
 
 ---
 
@@ -85,7 +103,7 @@ Assert on the **built `dist/` HTML, curl'd without JS execution**:
 - [ ] JSON-LD is **valid**: parses; `@context` is exactly `https://schema.org` (the literal `@@context` double-@ bug k9 shipped is a hard FAIL); only `SUPPORTED_LD_TYPES`; no placeholder values (`(248) 555-0199`, `example.com`, `Lorem`, `YOUR_`, empty required fields).
 - [ ] **Single `<h1>` per page** (hidden VitePress `search-content` divs can introduce a duplicate h1 — that is a FAIL).
 - [ ] Every `<img>` has a non-empty `alt`; OG + Twitter card tags complete; OG image is an **absolute** URL (relative OG images are rejected by social scrapers).
-- [ ] **0–100 GEO score ≥ threshold** (default `GEO_FAIL_BELOW = 60`). Score = weighted roll-up of areas 2–8 (schema depth, NAP match, AI-discovery files, citable-content levers, CWV budget). Below threshold = build-fail/SARIF, mirroring geo-optimizer-style gates. **(PLANNED — the score engine is not yet built in code; see the area-8 status note.)**
+- [ ] **0–100 GEO score ≥ threshold** (default `GEO_FAIL_BELOW = 60`). Score = weighted roll-up of areas 2–8 (schema depth, NAP match, AI-discovery files, citable-content levers, CWV budget). Below threshold = build-fail/SARIF, mirroring geo-optimizer-style gates. **The engine is `server/internal/geoscore/`; read the live score rather than recomputing it by hand (see area 8).**
 
 Evidence required for every finding: the **file path / route / URL + the offending line or curl excerpt**. No vibes.
 
@@ -146,10 +164,9 @@ These are **content findings emitted through `content.yaml` / frontmatter**, sur
 
 ### 8. Reporting & the portal surface
 
-- Roll the eight areas into the **0–100 GEO score** per page and per site.
-- Where wired, surface that score in the portal `SiteSeoView.vue` so SEO standing is a first-class product surface (don't build new portal UI from this skill unless asked — note it as the integration point).
-
-> **Status (2026-06-22): the 0-100 GEO score is PLANNED, not yet computed in code.** No script or service currently produces the weighted roll-up, and the portal does not display it. It is being built as a server-side live-fetch scorer in the Managed SEO Experience plan (ADO Feature #513 / story #520). Until it ships, treat the score as a target, not a shipped number — do not claim a site "scored X" from this skill unless you computed it yourself in the audit.
+- The eight areas roll into the **0–100 GEO score** per page and per site. SEO standing is a first-class portal surface; the portal `SiteSeoView.vue` is the integration point for further surfacing, but don't build new portal UI from this skill unless asked — note it as the integration point.
+- The server-side live-fetch scorer is `server/internal/geoscore/` (`geoscore.go`, `score.go`, `areas.go`, `fetch.go`, `discover.go`, `psi.go`); it is served by `GET /api/v1/portal/sites/{siteId}/seo/geo-score` (`server/internal/handlers/portal_site_geo.go`, route registered in `server/internal/handlers/server.go`), cached in the `portalsitegeoscore` Table repo, typed as `contracts.PortalSiteGeoScore`, and **displayed in the portal** (the Search readiness page `portal/src/views/SiteGeoScoreView.vue`, the Today page's `portal/src/components/home/HomeGettingFound.vue`, and `portal/src/components/pages/PageCard.vue`).
+- Prefer the live score over recomputing: read it from the endpoint and cite the score's own timestamp. Only compute a score yourself when the site has none cached or you are auditing the scorer itself — and say which you did.
 
 ---
 
@@ -167,10 +184,10 @@ Popular agentic-SEO skills end with a Verifier; ours must, because the dominant 
 
 ## Anti-patterns
 
-- **Claiming "no JSON-LD / empty-shell SPA / prerender needed"** without curling the built `dist` page — the #1 stale-skill false-positive; `emitStaticHtml`/`transformPageData` already bake it.
-- **Treating a sparse `seo.yaml` as "missing SEO"** — the factory bakes per-page defaults; a sparse override is normal.
+- **Claiming "no JSON-LD / empty-shell SPA / prerender needed"** without curling the built `dist` page — the #1 stale-skill false-positive (Verifier step 1).
+- **Treating a sparse `seo.yaml` as "missing SEO"** (Verifier step 2).
 - **Auditing source files or `pnpm dev` output** — the factory and `dcsCdnImagePlugin` run only at build; audit `dist/`.
-- **Hand-editing `<meta>`/JSON-LD/canonical in a `.vue` or `.md`** — drifts from the single source of truth; next build clobbers it. Emit through `.dcs` + the factory.
+- **Hand-editing `<meta>`/JSON-LD/canonical in a `.vue` or `.md`** — drifts from the single source of truth; next build clobbers it. Emit through `.dcs` + the factory (Verifier step 4).
 - **Inventing FAQPage Q&A, Review counts, or AggregateRating** to manufacture schema — REAL on-page content only; fabrication is an E-E-A-T and trust liability.
 - **Letting `robots.txt`/`sitemap.xml`/`llms.txt` fall through to the SWA shell** — a 200 HTML response there is worse than a 404; assert a real file.
 - **Editing `packages/cms`** from this skill — file factory capability gaps as platform findings; another workflow owns the factory.

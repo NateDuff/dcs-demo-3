@@ -8,13 +8,14 @@ metadata:
   status: Active
   owner: Nathan Duff
   created: 2026-06-24
-  lastVerified: 2026-06-25
+  lastVerified: 2026-09-27
   stalenessSLA: 90
   relatedDocs:
     - .github/instructions/frontend-common.instructions.md
     - .github/skills/dashboard-replication/SKILL.md
     - .github/skills/site-design-system/SKILL.md
     - .github/skills/dcs-product-motion/SKILL.md
+    - .github/skills/dcs-design-taste/SKILL.md
   codeRefs: []
   updateTriggers:
     - Frontend UI/UX standards change
@@ -38,6 +39,7 @@ Inspired by the MIT-licensed `nextlevelbuilder/ui-ux-pro-max-skill` reasoning fl
    - `portal-admin-list-detail` for portal admin list/detail workflows.
    - `dashboard-replication` for charts, KPIs, analytics, and reporting.
    - `dcs-product-motion` for transitions, animation audits, motion tokens, and reduced-motion behavior.
+   - `dcs-design-taste` for marketing/landing/portfolio/customer-site pages — design direction, hero/section composition, anti-slop (AI-tell) gate, and redesigns. That skill owns taste for pages that sell or persuade; this skill owns product-UI craft.
    - `site-design-system` plus the site-local design skill for customer/prospect/demo sites.
    - `site-experience-review` when auditing a live site rather than implementing a scoped change.
    - `site-performance-audit` / `dcs-seo` for CWV and discoverability.
@@ -70,7 +72,7 @@ Resolve UI work in this order. Lower-priority polish never excuses higher-priori
 4. **Information hierarchy:** one primary action per surface, clear grouping, important content first on mobile, readable empty/error/permission states.
 5. **Responsive layout:** no horizontal scroll at 375px, stable grids at 768/1024/1440, safe fixed/sticky offsets, no text overflow or overlap.
 6. **Typography and color:** use semantic tokens, 16px+ body text on mobile, 1.4-1.7 body line height, readable line lengths, tabular numbers for data.
-7. **Motion:** 150-300ms micro-interactions, purposeful cause/effect, reduced-motion support, no decorative motion that blocks use.
+7. **Motion:** purposeful cause/effect, reduced-motion support, no decorative motion that blocks use; timing, easing, and tokens per `dcs-product-motion`.
 8. **Forms and feedback:** visible labels, errors beside fields, helper text for hard choices, submit progress, success/error recovery, destructive confirmation.
 9. **Navigation:** predictable back/close behavior, shallow labels in customer language, deep links where relevant, no overloaded sidebars or nav drawers.
 10. **Charts and data:** correct chart type, legends/tooltips, accessible colors, tabular numbers, sort/filter affordances, and truthful mock data.
@@ -79,12 +81,16 @@ Resolve UI work in this order. Lower-priority polish never excuses higher-priori
 
 ### Portal, Admin, And Operational Tools
 
+- **The rendered page standard is `/dev/design`** (dev-only, tree-shaken from release builds). Read it before designing a portal page instead of copying a random existing view: an index plus eight archetype boards — standard page, list, list-detail, dashboard, form/settings, states, tokens, footers — composed from the live primitives, so they cannot drift from the components they document. Run `pnpm --filter dcs-portal dev`, sign in at `/dev-login`, open `/dev/design`.
+- **Conformance is enforced, not advisory:** `portal/src/__tests__/designReferenceConformance.spec.ts` derives the view corpus from the router and reds a NAMED rule (heading path, raw `<h1>`, ad-hoc permission-denied markup) on a new deviation, with every exemption written out and reasoned. The three canonical content wells are pinned in `portal/src/views/dev/design/marker.ts`.
 - Design for repeated use: quiet, scannable, dense, and predictable.
 - Avoid marketing heroes, oversized decorative sections, floating section cards, and ornamental backgrounds.
 - Prefer explicit task surfaces: tables, filters, tabs, split panes, side sheets, timeline panels, and compact summary rows.
 - Keep one obvious primary action; make secondary/destructive actions visually subordinate and confirmation-gated.
 - Show real states for loading, empty, error, permission denied, stale data, optimistic mutation, and unsaved changes.
 - Use existing `@dcs/ui` / shadcn-vue primitives and `lucide-vue-next` icons before making new controls.
+- **List-page filters = inline chip controls, not a `<Select>` dropdown.** A list's own status/type/category/rating/period filter renders as a segmented row of rounded-full toggle buttons (a leading `Filter` icon chip + an `All` chip + one chip per real option), shown only when more than one option exists. Reserve `<Select>` for unbounded/large option sets. The gold standard is `portal/src/views/revenue/RevenueServicesView.vue`; the full markup spec lives in the `portal-admin-list-detail` skill.
+- **List-page primary action = `New <Thing>` + a simple `Plus` icon.** Never label it `Create`/`Add` with an AI/sparkle (`Sparkles`/`Wand`) icon — sparkle icons mean genuine AI generation and belong inside the create sheet, not on the list's header button.
 
 ### Customer Sites And Marketing Surfaces
 
@@ -144,8 +150,9 @@ Resolve UI work in this order. Lower-priority polish never excuses higher-priori
 - [ ] Loading, empty, error, permission, success, disabled, and destructive states are represented.
 - [ ] The surface avoids generic template rhythm and does not rely on invented proof.
 - [ ] Mobile, tablet, and desktop layouts have no overlap, horizontal scroll, clipped text, or hidden fixed-bar content.
-- [ ] Contrast, labels, focus states, keyboard paths, and reduced-motion behavior are acceptable.
-- [ ] Motion follows `dcs-product-motion`: purposeful, tokenized, reduced-motion safe, and mostly transform/opacity with 150-300ms timing.
+- [ ] Contrast, labels, focus states, keyboard paths, and reduced-motion behavior are acceptable. Contrast is **measured** with `node cli/contrast-audit.mjs <url> --theme both` — never with a hand-rolled sweep, and never reported from a ratio the tool ABSTAINED on. On a live host the session follows `site-experience-review` §Live-site browser sessions.
+- [ ] Any element-presence or control-inventory sweep **pierced shadow roots**. `querySelectorAll` stops at a shadow boundary, so shadow content reads as absent rather than unmeasured — and the DCS agent widget renders in an open shadow root on every site that ships it. Technique + the measured Iron Oak case: `site-experience-review` §4.
+- [ ] Motion follows `dcs-product-motion`: purposeful, tokenized via `--motion-*`, and reduced-motion safe.
 - [ ] Visuals use semantic tokens, one icon language, and no accidental one-hue theme.
 - [ ] Browser screenshots or live inspection were used for user-facing UI changes.
 - [ ] The owning app/site validation commands from its README were run or the skip reason is reported.

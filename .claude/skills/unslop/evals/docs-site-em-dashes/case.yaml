@@ -1,0 +1,20 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: docs-site-em-dashes
+runs: 1
+execution:
+  prompt: |
+    The public docs site is full of em-dashes. Fix them.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [trigger]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response routes to the unslop skill and then:
+      - applies the ban to docs/ as customer-facing prose and does NOT open a sweep over .docs/ internal plans
+      - restructures with a period, comma, or colon and explicitly avoids swapping in parentheses
+      - leaves ranges on a hyphen and does not relitigate the ban
+

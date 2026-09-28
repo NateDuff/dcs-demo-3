@@ -1,0 +1,33 @@
+{
+  "skill": "site-forms",
+  "created": "2026-07-12",
+  "harness": "skill-creator with/without pattern (R5). Run each prompt through a fresh subagent WITHOUT the skill, then WITH it; grade both on the `expect` criteria. `shouldTrigger:false` cases tune the description to avoid mis-routing.",
+  "evals": [
+    {
+      "id": "add-contact-form",
+      "prompt": "Add a contact form to the ktbraunlaw customer site.",
+      "shouldTrigger": true,
+      "expect": [
+        "wires it via <DcsForm> (not a hand-rolled form)",
+        "keeps the site↔portal↔provision 3-way schema in sync (all three must agree)",
+        "uses the correct API base routing and runs the validation gates + PHI-log grep gate"
+      ]
+    },
+    {
+      "id": "submission-not-arriving",
+      "prompt": "A customer says their intake form submissions aren't coming through — debug it.",
+      "shouldTrigger": true,
+      "expect": [
+        "checks the submission testing traps and API base routing (bare /api/v1/contact hardcodes dcs-marketing)",
+        "tests without emailing the owner (TEST MODE), and checks the spam-filter / captcha assertions"
+      ]
+    },
+    {
+      "id": "negative-style-button",
+      "prompt": "Make the submit button on the contact form match the site's brand color.",
+      "shouldTrigger": false,
+      "expect": ["routes to site-design-system (styling/brand tokens), not site-forms (wiring/schema)"]
+    }
+  ]
+}
+

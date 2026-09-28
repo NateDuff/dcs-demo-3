@@ -1,0 +1,18 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: negative-portal-form-errors
+runs: 1
+execution:
+  prompt: |
+    The validation error messages and empty states in the portal settings view are confusing - rewrite them.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [route-away]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response does NOT run an unslop prose pass on this request. Instead:
+      - routes to dcs-ui-ux: product UI strings (labels, form errors, empty states, table headers) are its surface, not unslop's
+

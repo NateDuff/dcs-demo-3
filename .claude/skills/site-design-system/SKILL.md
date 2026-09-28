@@ -8,7 +8,7 @@ metadata:
   status: Active
   owner: Nathan Duff
   created: 2026-06-24
-  lastVerified: 2026-06-25
+  lastVerified: 2026-07-12
   stalenessSLA: 90
   relatedDocs:
     - .github/skills/dcs-ui-ux/SKILL.md
@@ -72,7 +72,7 @@ For any analytics/dashboard surface on a site, follow the `dashboard-replication
 - Put CTAs near trust evidence: reviews, credentials, guarantees, location, service area, or work examples.
 - Use site tokens for color, type, spacing, radius, and shadows; do not scatter raw colors through page components.
 - Avoid one-note palettes, abstract gradient-only heroes, nested cards, and decorative motion that does not help the visitor act.
-- Use `dcs-product-motion` for transitions; keep motion tokenized, reduced-motion safe, and aligned with the site's brand tempo.
+- Use `dcs-product-motion` for transitions and the shared `--motion-*` tokens (delivered to every site by the cms plugin; override them in the site's `:root` for brand tempo). Keep motion reduced-motion safe.
 - Validate mobile/tablet/desktop for no overlap, clipped text, horizontal scroll, or hidden fixed-bar content.
 
 ## Validation

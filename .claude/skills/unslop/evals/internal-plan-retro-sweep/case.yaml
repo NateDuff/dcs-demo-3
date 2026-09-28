@@ -1,0 +1,19 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: internal-plan-retro-sweep
+runs: 1
+execution:
+  prompt: |
+    Sweep all the em-dashes out of our .docs/ plan files too.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [trigger]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response routes to the unslop skill and then:
+      - declines the retroactive sweep: internal docs follow the rules GOING FORWARD when newly written and get NO retroactive sweep
+      - offers to apply the rules to newly written internal prose instead
+

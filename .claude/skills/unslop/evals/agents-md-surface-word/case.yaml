@@ -1,0 +1,19 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: agents-md-surface-word
+runs: 1
+execution:
+  prompt: |
+    AGENTS.md says 'the MCP surface' and 'harness limits' - are those AI slop words we should replace?
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [trigger]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response routes to the unslop skill and then:
+      - applies the rule 26 carve-out: surface, primitive (noun), scaffolding, harness, north star, flywheel are precise internal engineering vocabulary, not tells
+      - does not file a PT-26 hit against AGENTS.md, the instruction tree, or a skill
+

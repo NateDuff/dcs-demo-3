@@ -1,0 +1,20 @@
+# Converted from evals.json by Q-887 = B (c), 2026-09-14; --ablation with-without supplies the R5 baseline arm.
+schema_version: "1.0"
+name: bare-copy-review
+runs: 1
+execution:
+  prompt: |
+    Review this copy and tell me if it reads like AI wrote it.
+  max_turns: 8
+  allowed_tools: [Read, Glob, Grep, Skill]
+tags: [trigger]
+graders:
+  - name: expectations
+    type: llm
+    weight: 1
+    criteria: |
+      The response routes to the unslop skill and then:
+      - runs the detection pass against references/prose-tells.md and emits hits as PT-nn plus locator plus quoted span plus why
+      - does not rewrite during the detection pass and does not list rules with zero hits
+      - cites dcs-design-taste 3.6 / 5 / 5.1 by section number for rules that skill owns instead of restating them
+
